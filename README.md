@@ -19,7 +19,12 @@ Once dependencies are set up:
 5. Load the SVG into a plotter program of your choice!  (Or anything else, really.)
 
 ## Results
-Images coming to a future commit near you!
+
+![betta](https://raw.githubusercontent.com/evanfletcher42/img2plot/master/readme-imgs/betta.jpg)
+![revali](https://raw.githubusercontent.com/evanfletcher42/img2plot/master/readme-imgs/revali.jpg)
+![dunwall](https://raw.githubusercontent.com/evanfletcher42/img2plot/master/readme-imgs/dunwall.jpg)
+![printed](https://raw.githubusercontent.com/evanfletcher42/img2plot/master/readme-imgs/img2plot.jpg)
 
 ## Future Plans
-This is under development as a background project.  I plan to experiment with drawing smooth Bezier curves rather than straight lines - this would better mimic human sketching, but might change the art style a bit.  
+* Draw smooth Bezier curves instead of lines - would change the art style a little, but would look more "human"
+* Port to C++ / OpenCV for speed on large images

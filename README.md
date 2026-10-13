@@ -6,19 +6,44 @@ img2plot is a script that attempts to make artistic line drawings out of input i
 
 Unlike other image-to-pen-plotter programs, img2plot tries to mimic human drawing styles with lines - instead of drawing densities with stippling, circles, or waves, the output will be lines following edges and sketchy representations of gradients.  The intention is to mimic the appearance of a quick notebook pen sketch.  
 
+Two stroke styles are available:
+* `curves` (default) - each stroke is traced along an edge and drawn as a smooth cubic Bezier path, for a looser, more hand-drawn look.
+* `lines` - each stroke is a single straight segment; this is the original img2plot style.
+
 This was originally written with a Silhouette Cameo in mind, but many other plotters, laser cutters, or other devices that take vector input ought to work fine.
 
 ## How do I use it?
-This was written for Python 2.7 and requires the `matplotlib`, `numpy`, `scikit-image`, and `svgwrite` packages.  All of these can be installed via pip, but if you're on Windows you may need to install scikit-image via a binary Python wheel - see instructions [here](http://scikit-image.org/docs/dev/install.html).  
+Requires Python 3.10+ and the `matplotlib`, `numpy`, `scipy`, `scikit-image`, and `svgwrite` packages.
 
-Once dependencies are set up:
-1. Clone or download this repository
-2. Edit the input/output paths in the first few lines of the script
-3. Tune any configuration parameters as needed
-4. Run, and re-tune as needed
-5. Load the SVG into a plotter program of your choice!  (Or anything else, really.)
+With [uv](https://docs.astral.sh/uv/), dependencies are installed automatically on first run:
+
+```
+uv run img2plot.py input.jpg -o output.svg
+```
+
+Or with pip:
+
+```
+pip install matplotlib numpy scipy scikit-image svgwrite
+python img2plot.py input.jpg -o output.svg
+```
+
+Useful options (run with `--help` for the full list):
+* `--style lines` - use the original straight-line style
+* `--preview preview.png` - also save a raster preview of the drawing
+* `--show` - show the intermediate images (preprocessed input, edge magnitude, gradients) and the result
+* `--termination-ratio`, `--min-line-length`, `--max-curve-angle`, `--line-continue-thresh` - control how many strokes are drawn and how long they get
+* `--curve-point-spacing` - for curves, larger values give smoother, looser strokes
+
+Then load the SVG into a plotter program of your choice!  (Or anything else, really.)
 
 ## Results
+
+Curves:
+
+![betta-curves](readme-imgs/betta-curves.jpg)
+
+Lines:
 
 ![betta](https://raw.githubusercontent.com/evanfletcher42/img2plot/master/readme-imgs/betta.jpg)
 ![revali](https://raw.githubusercontent.com/evanfletcher42/img2plot/master/readme-imgs/revali.jpg)
@@ -26,5 +51,4 @@ Once dependencies are set up:
 ![printed](https://raw.githubusercontent.com/evanfletcher42/img2plot/master/readme-imgs/img2plot.jpg)
 
 ## Future Plans
-* Draw smooth Bezier curves instead of lines - would change the art style a little, but would look more "human"
 * Port to C++ / OpenCV for speed on large images

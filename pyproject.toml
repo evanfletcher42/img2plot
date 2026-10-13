@@ -1,0 +1,14 @@
+[project]
+name = "img2plot"
+version = "0.2.0"
+description = "Turn images into drawings for a pen plotter!"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "scipy",
+    "scikit-image",
+    "svgwrite",
+]
